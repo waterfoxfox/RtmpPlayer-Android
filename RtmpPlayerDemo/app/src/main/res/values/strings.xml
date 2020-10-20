@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Player-sdk-rtmp</string>
+
+    <string name="watch_live">启动</string>
+    <string name="str_rtmp">RTMP</string>
+
+    <string name="text_rtmp_url">RTMP地址:</string>
+    <string name="text_jitter_buff">JittBuf缓存:</string>
+    <string name="hint_rtmp_url">待播放RTMP地址</string>
+    <string name="hint_jitter_buff">缓存时间，单位毫秒</string>
+    <string name="version">V0.0.1</string>
+
+    <string name="str_rtmp_company">www.mediapro.cc</string>
+</resources>
