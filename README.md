@@ -13,7 +13,7 @@
 * 7、仅六个接口，调用简洁，用户只需传入播放器窗口surface即可。
 * 8、整个系统仅由一个so组成，占用空间小，性能强劲。
 
-
+#### Windows版本：https://github.com/waterfoxfox/RtmpPlayer
 
 ## RtmpPlaySdk  JAVA API
 
