@@ -162,14 +162,14 @@ public class PlayerActivity extends Activity {
             Log.e(TAG, "SDsysinit failed return:" + ret);
         }
 		
-		mPlayer.Init(this, mSurfaceView, false, false);
+		mPlayer.SDplayinit(this, mSurfaceView, false, false);
     }
     
     //反初始化基础API、播放API
     private void uninitAvResource()
     {
         // 相关资源回收
-        mPlayer.Exit();
+        mPlayer.SDplayexit();
         mInterface.SDsysexit();
     }
     
@@ -201,7 +201,7 @@ public class PlayerActivity extends Activity {
     //开始播放
     private void startPlay(int rendWidth, int rendHeight)
     {
-        mPlayer.startPlay(rendWidth, rendHeight);
+        mPlayer.SDStartPlay(rendWidth, rendHeight);
         mbPlayStart = true;
     }
     
@@ -210,7 +210,7 @@ public class PlayerActivity extends Activity {
     {
         if (mbPlayStart == true)
         {
-            mPlayer.stopPlay();
+            mPlayer.SDStopPlay();
             mbPlayStart = false;
         }
     }

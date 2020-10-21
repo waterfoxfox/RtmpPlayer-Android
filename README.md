@@ -1,8 +1,8 @@
 # Low delay android rtmp player with simple api 
 
 
-## RtmpPlaySdk简介
-一款低延时的极简接口RTMP播放器（Windows版和Android版）。市面上的RTMP播放器较多，有开源的ijkplayer及其衍生品，也有收费的功能繁多的播放器，适合自己的才是最好的，其中Android版播放器的特性如下：
+## RtmpPlaySdk Android版简介
+一款低延时的极简接口RTMP播放器（Windows版和Android版）。市面上的RTMP播放器较多，有开源的ijkplayer及其衍生品，也有收费的功能繁多的播放器，适合自己的才是最好的，本播放器主要关注低延时、可靠性、易用性，其中Android版播放器的特性如下：
 
 * 1、支持Rtmp掉线自动重连。
 * 2、支持非阻塞Rtmp连接，外层可随时中断。
@@ -15,53 +15,71 @@
 
 
 
-## RtmpPlaySdk  C API
+## RtmpPlaySdk  JAVA API
 
 ### 
 * 环境初始化，系统只需调用一次<br>
 @param: outputPath：日志文件输出的目录，若目录不存在将自动创建<br>
 @param: outputLevel：日志输出的级别，只有等于或者高于该级别的日志输出到文件<br>
-@return: <br>
-void  `RtmpPlayer_Enviroment_Init`(const char * outputPath,  LOG_OUTPUT_LEVEL outputLevel);
+@return: 成功返回0，失败返回负数<br>
+int  `SDsysinit`(String outputPath,  byte outputLevel);
 
 ### 
 * 环境反初始化，系统只需调用一次<br>
 @return:<br>
-void  `RtmpPlayer_Enviroment_Free`();
+void  `SDsysexit`();
 
 ### 
-* 创建RtmpPlayer<br>
-@return: 返回模块指针，为NULL则失败<br>
-void*  `RtmpPlayer_Create`();
+* 初始化播放器<br>
+@param: act：播放器所在的Activity<br>
+@param: surfaceView：播放器渲染窗口<br>
+@param: playAudioOnly：是否仅播放音频<br>
+@param: playVideoOnly：是否仅播放视频<br>
+@return:<br>
+void*  `SDplayinit`(Activity act, SurfaceViewRenderer surfaceView, boolean playAudioOnly, boolean playVideoOnly);
 
 ### 
-* 销毁RtmpPlayer,注意：【涉及到资源销毁，使用者应该做好本接口与其他接口的互斥保护】<br>
-@param pRtmpPlayer: 模块指针<br>
+* 反初始化播放器<br>
 @return: <br>
-void  `RtmpPlayer_Delete`(void* pRtmpPlayer);
+void  `SDplayexit`();
 
 ### 
-* 开始拉流Rtmp并播放<br>
-@param pRtmpPlayer: 模块指针<br>
-@param strRtmpPlayUrl: Rtmp地址<br>
-@param unJitterBuffDelay: 内部缓存时间，缓存时间越大延时越大、流畅性越好。反之延时越小，流畅性越差。范围[0, 4000]，单位毫秒<br>
-@param pDisplayHandle: 渲染输出的窗口句柄<br>
-@return: TURE成功，FALSE失败<br>
-BOOL  `RtmpPlayer_Start`(void* pRtmpPlayer, char *strRtmpPlayUrl, UINT unJitterBuffDelay, void* pDisplayHandle);
+* 建立与远端媒体服务器之间的RTMP连接<br>
+@param strRtmpUrl: 待播放的RTMP地址<br>
+@param nJitterBuffDelay: 播放器内部JitterBuff缓存时间，单位毫秒<br>
+@return: 成功返回0，失败返回负数<br>
+int  `SDConnectRtmp`(String strRtmpUrl, int nJitterBuffDelay);
 
 ### 
-* 停止拉流Rtmp播放<br>
-@param pRtmpPlayer: 模块指针<br>
+* 断开与远端媒体服务器之间的RTMP连接<br>
 @return: <br>
-void  `RtmpPlayer_Stop`(void* pRtmpPlayer);
+void  `SDDisconnectRtmp`();
+
 
 ### 
-* 获取RTMP连接状态<br>
-@param pRtmpPlayer: 模块指针<br>
-@return: RTMP连接状态<br>
-RtmpPlay_Status  `RtmpPlayer_GetRtmpStatus`(void* pRtmpPlayer);
+* 开始播放<br>
+@param renderWidth: 播放器渲染窗口宽度<br>
+@param renderHeight: 播放器渲染窗口高度<br>
+@return: <br>
+void  `SDStartPlay`(int renderWidth, int renderHeight);
 
 ### 
-应用案例：i8财经直播 http://www.i8zhibo.cn/
+* 停止播放<br>
+@return: <br>
+void  `SDStopPlay`();
 
-### 本库加入了时长限制，仅做演示用途，若需要定制服务与技术支持请联系 www.mediapro.cc
+###
+调用顺序：<br>
+SDsysinit<br>
+SDplayinit<br>
+SDConnectRtmp<br>
+SDStartPlay<br>
+<br>
+SDStopPlay<br>
+SDDisconnectRtmp<br>
+SDplayexit<br>
+SDsysexit<br>
+
+
+
+### 本库加入了使用限制，仅做演示用途，若需要定制服务与技术支持请联系 www.mediapro.cc

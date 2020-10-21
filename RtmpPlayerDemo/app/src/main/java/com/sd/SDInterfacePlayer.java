@@ -34,7 +34,7 @@ public class SDInterfacePlayer {
 
     }
 
-    public void Init(final Activity act, final SurfaceViewRenderer surfaceView, final boolean playAudioOnly, final boolean playVideoOnly) {
+    public void SDplayinit(final Activity act, final SurfaceViewRenderer surfaceView, final boolean playAudioOnly, final boolean playVideoOnly) {
 
         eglBase = EglBase.create();
 
@@ -53,7 +53,7 @@ public class SDInterfacePlayer {
         mInited = true;
     }
 
-    public void Exit() {
+    public void SDplayexit() {
 
         if (mInited)
         {
@@ -64,7 +64,7 @@ public class SDInterfacePlayer {
     }
 
 
-    public void startPlay(final int renderWidth, final int renderHeight) {
+    public void SDStartPlay(final int renderWidth, final int renderHeight) {
         if (mInited) 
 		{
             if (mPlayAudioOnly == false) 
@@ -91,7 +91,7 @@ public class SDInterfacePlayer {
         }
     }
 
-    public void stopPlay() {
+    public void SDStopPlay() {
 
         if (mInited)
         {
