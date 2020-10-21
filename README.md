@@ -26,7 +26,6 @@ int  `SDsysinit`(String outputPath,  byte outputLevel);
 
 ### 
 * 环境反初始化，系统只需调用一次<br>
-@return:<br>
 void  `SDsysexit`();
 
 ### 
@@ -35,12 +34,10 @@ void  `SDsysexit`();
 @param: surfaceView：播放器渲染窗口<br>
 @param: playAudioOnly：是否仅播放音频<br>
 @param: playVideoOnly：是否仅播放视频<br>
-@return:<br>
 void*  `SDplayinit`(Activity act, SurfaceViewRenderer surfaceView, boolean playAudioOnly, boolean playVideoOnly);
 
 ### 
 * 反初始化播放器<br>
-@return: <br>
 void  `SDplayexit`();
 
 ### 
@@ -52,7 +49,6 @@ int  `SDConnectRtmp`(String strRtmpUrl, int nJitterBuffDelay);
 
 ### 
 * 断开与远端媒体服务器之间的RTMP连接<br>
-@return: <br>
 void  `SDDisconnectRtmp`();
 
 
@@ -60,12 +56,10 @@ void  `SDDisconnectRtmp`();
 * 开始播放<br>
 @param renderWidth: 播放器渲染窗口宽度<br>
 @param renderHeight: 播放器渲染窗口高度<br>
-@return: <br>
 void  `SDStartPlay`(int renderWidth, int renderHeight);
 
 ### 
 * 停止播放<br>
-@return: <br>
 void  `SDStopPlay`();
 
 ###
