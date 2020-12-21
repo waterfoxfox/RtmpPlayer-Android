@@ -103,7 +103,17 @@ public class SDInterfacePlayer {
         }
     }
 
-
+    public void SDSetVolume(float volume) {
+        if (mInited)
+        {
+            Log.i(TAG, "SDSetVolume set volume to:" + volume);
+            nativeSetVolume(volume);
+        }
+        else {
+            Log.e(TAG, "SDSetVolume failed should Init first");
+        }
+    }
+    
     /**
      * Jni interface
      */
@@ -112,4 +122,5 @@ public class SDInterfacePlayer {
     private native void nativeStartRtmpPlay(final long renderPointer, final int renderWidth, final int renderHeight);
     private native void nativeStopRtmpPlay();
     private native void nativeDestroy();
+    private native void nativeSetVolume(float volume);
 }

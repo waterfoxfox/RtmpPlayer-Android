@@ -202,6 +202,7 @@ public class PlayerActivity extends Activity {
     private void startPlay(int rendWidth, int rendHeight)
     {
         mPlayer.SDStartPlay(rendWidth, rendHeight);
+        mPlayer.SDSetVolume((float)2.0);
         mbPlayStart = true;
     }
     
