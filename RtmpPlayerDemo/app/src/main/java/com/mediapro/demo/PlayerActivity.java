@@ -1,8 +1,10 @@
 package com.mediapro.demo;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -93,6 +95,9 @@ public class PlayerActivity extends Activity {
 
         //播放窗口
         mSurfaceView = (SurfaceViewRenderer) findViewById(R.id.suface_view);
+
+        AudioManager am = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        am.setSpeakerphoneOn(true);
 
         //初始化基础API、播放API
         initAvResource();
