@@ -34,7 +34,7 @@ void  `SDsysexit`();
 @param: surfaceView：播放器渲染窗口<br>
 @param: playAudioOnly：是否仅播放音频<br>
 @param: playVideoOnly：是否仅播放视频<br>
-void*  `SDplayinit`(Activity act, SurfaceViewRenderer surfaceView, boolean playAudioOnly, boolean playVideoOnly);
+void  `SDplayinit`(Activity act, SurfaceViewRenderer surfaceView, boolean playAudioOnly, boolean playVideoOnly);
 
 ### 
 * 反初始化播放器<br>
